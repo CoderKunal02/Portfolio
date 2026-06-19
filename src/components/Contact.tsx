@@ -12,43 +12,65 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: FormEvent) => {
-
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     // Basic Validation
     if (!form.name || !form.email || !form.message) {
       setStatus("error");
-      setStatusMsg("Please fill in all required boundaries (*).");
+      setStatusMsg("Please fill in all required fields (*).");
       return;
     }
 
     if (!form.email.includes("@")) {
       setStatus("error");
-      setStatusMsg("Please input a valid email coordinate.");
+      setStatusMsg("Please input a valid email address.");
+      return;
+    }
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey || accessKey === "YOUR_WEB3FORMS_ACCESS_KEY_HERE") {
+      setStatus("error");
+      setStatusMsg("Web3Forms API Key is missing! Please configure VITE_WEB3FORMS_ACCESS_KEY in your .env file.");
       return;
     }
 
     // Direct Email Dispatch Integration
     setStatus("sending");
-    setStatusMsg("Preparing direct email draft...");
+    setStatusMsg("Sending message...");
 
-    setTimeout(() => {
-      setStatusMsg("Redirecting to email client...");
-    }, 400);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: form.name,
+          email: form.email,
+          subject: form.subject || `Inquiry from ${form.name}`,
+          message: form.message,
+          from_name: "Portfolio Contact Form",
+        })
+      });
 
-    setTimeout(() => {
-      setStatus("success");
-      setStatusMsg("Draft generated! Please hit 'Send' in your mail client.");
+      const data = await response.json();
 
-      const mailTo = "kunal.codes5@gmail.com";
-      const mailSubject = encodeURIComponent(form.subject || `Inquiry from ${form.name}`);
-      const mailBody = encodeURIComponent(`Hello Kunal,\n\nI visited your portfolio and wanted to reach out.\n\nFrom: ${form.name} (${form.email})\n\nMessage:\n${form.message}`);
-
-      window.location.href = `mailto:${mailTo}?subject=${mailSubject}&body=${mailBody}`;
-
-      setForm({ name: "", email: "", subject: "", message: "" });
-    }, 1000);
+      if (data.success) {
+        setStatus("success");
+        setStatusMsg("Message sent successfully! Kunal will get back to you soon.");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("error");
+        setStatusMsg(data.message || "Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error sending email:", err);
+      setStatus("error");
+      setStatusMsg("Network error! Please try again later.");
+    }
   };
 
   return (
