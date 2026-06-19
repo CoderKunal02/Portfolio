@@ -60,5 +60,5 @@ This will generate a static production bundle in the `dist` directory which can 
 ## 📬 Contact & Links
 
 - **Email**: [kunal.codes5@gmail.com](mailto:kunal.codes5@gmail.com)
-- **LinkedIn**: [https://linkedin.com](https://linkedin.com)
-- **GitHub**: [https://github.com](https://github.com)
+- **LinkedIn**: [https://www.linkedin.com/in/kunal-choudhary-a5b781376](https://www.linkedin.com/in/kunal-choudhary-a5b781376)
+- **GitHub**: [https://github.com/Kunal-CodeLab](https://github.com/Kunal-CodeLab)
