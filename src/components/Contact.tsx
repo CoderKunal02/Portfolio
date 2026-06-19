@@ -40,20 +40,17 @@ export default function Contact() {
     setStatusMsg("Sending message...");
 
     try {
+      const formData = new FormData();
+      formData.append("access_key", accessKey);
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("subject", form.subject || `Inquiry from ${form.name}`);
+      formData.append("message", form.message);
+      formData.append("from_name", "Portfolio Contact Form");
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name: form.name,
-          email: form.email,
-          subject: form.subject || `Inquiry from ${form.name}`,
-          message: form.message,
-          from_name: "Portfolio Contact Form",
-        })
+        body: formData
       });
 
       const data = await response.json();
