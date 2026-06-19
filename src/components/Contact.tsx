@@ -28,7 +28,7 @@ export default function Contact() {
       return;
     }
 
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "cb8e034e-21fa-4ac3-bd38-3eb8f23b7fb8";
     if (!accessKey || accessKey === "YOUR_WEB3FORMS_ACCESS_KEY_HERE") {
       setStatus("error");
       setStatusMsg("Web3Forms API Key is missing! Please configure VITE_WEB3FORMS_ACCESS_KEY in your .env file.");
