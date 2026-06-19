@@ -129,6 +129,17 @@ export const EDUCATION_TIMELINE: EducationMilestone[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: "gitauto-push",
+    title: "GitAuto Push",
+    description: "A zero-friction repository automation utility that simplifies development workflows by automatically tracking file modifications, staging updates, and executing secure Git push operations. Designed for seamless continuous repository synchronization and backups.",
+    tags: ["Git API", "GitHub API", "Automation", "Node.js / Python", "CLI & Webhook"],
+    imageSrc: "/images/gitauto-push.png",
+    liveUrl: "https://github.com/Kunal-CodeLab/GitAuto-Push",
+    githubUrl: "https://github.com/Kunal-CodeLab/GitAuto-Push",
+    category: "DevOps",
+    highlighted: true
+  },
+  {
     id: "web-scanner",
     title: "Website Vulnerability Scanner",
     description: "Developed a security platform using Python (Flask) that detects 14+ web vulnerabilities (including SQL Injection, XSS, CSRF, and SSL/TLS issues). Features a real-time responsive dashboard, JWT-based authentication, scan history tracking, risk assessment, and downloadable PDF security reports.",
