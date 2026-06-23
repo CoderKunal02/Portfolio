@@ -133,7 +133,7 @@ export const PROJECTS: Project[] = [
     title: "GitAuto Push",
     description: "A zero-friction repository automation utility that simplifies development workflows by automatically tracking file modifications, staging updates, and executing secure Git push operations. Designed for seamless continuous repository synchronization and backups.",
     tags: ["Git API", "GitHub API", "Automation", "Node.js / Python", "CLI & Webhook"],
-    imageSrc: "/images/gitauto-push.png",
+    imageSrc: "/images/autogitpush.png",
     liveUrl: "https://github.com/Kunal-CodeLab/GitAuto-Push",
     githubUrl: "https://github.com/Kunal-CodeLab/GitAuto-Push",
     category: "DevOps",

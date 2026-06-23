@@ -111,6 +111,28 @@ export default function Projects() {
                     <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
                       {proj.description}
                     </p>
+
+                    {/* Mobile-only action buttons */}
+                    <div className="flex md:hidden items-center gap-3 mt-2 mb-6">
+                      <a
+                        href={proj.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-3 px-4 rounded-xl bg-white text-black flex items-center justify-center gap-2 font-display text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.98]"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Live Demo</span>
+                      </a>
+                      <a
+                        href={proj.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-3 px-4 rounded-xl bg-white/10 text-white border border-white/10 flex items-center justify-center gap-2 font-display text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.98]"
+                      >
+                        <Github className="w-4 h-4" />
+                        <span>Code</span>
+                      </a>
+                    </div>
                   </div>
 
                   {/* Skills/Tags listed on card */}
